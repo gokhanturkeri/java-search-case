@@ -20,14 +20,14 @@ You can download Docker [here](https://docs.docker.com/get-docker/) and it inclu
 
 A step by step series of examples that tell you how to get a development environment running
 
-Navigate to the project folder in your terminal and run the following command:
+Navigate to the project folder in your terminal and run the following commands:
 
-mvn clean package
-
+1. Package Application
 ```bash
 mvn clean package
 ```
 
+2. Up Docker Service
 ```bash
 docker-compose up
 ```
