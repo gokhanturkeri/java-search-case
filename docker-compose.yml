@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8
+    volumes:
+      - ./myschema.sql:/docker-entrypoint-initdb.d/myschema.sql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: zapu
+      MYSQL_USER: gkhan
+      MYSQL_PASSWORD: zapu123
+    ports:
+      - "3306:3306"
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/zapu
+      SPRING_DATASOURCE_USERNAME: gkhan
+      SPRING_DATASOURCE_PASSWORD: zapu123
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_SHOW_SQL: "true"
+    depends_on:
+      - mysql-db
+    ports:
+      - "8080:8080"

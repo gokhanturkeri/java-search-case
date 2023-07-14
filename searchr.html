@@ -1,0 +1,19 @@
+<!-- search-result.html -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Your HTML head content -->
+</head>
+<body>
+<!-- Display the search result -->
+<h1>Search Result</h1>
+<div>
+    <!-- Access the search result object and iterate over the properties -->
+    <ul>
+        <li th:each="property : ${searchResult.result}">
+            <span th:text="${property.title}"></span> - <span th:text="${property.price}"></span>
+        </li>
+    </ul>
+</div>
+</body>
+</html>
